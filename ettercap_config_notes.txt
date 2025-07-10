@@ -1,0 +1,21 @@
+sudo su -
+cd /opt
+sudo git clone https://github.com/Ettercap/ettercap
+cd ettercap
+sudo mkdir build
+cd build
+sudo cmake ..
+sudo make
+sudo make install
+
+# Config changes
+sudo gedit /etc/ettercap/etter.conf
+# Change:
+# ec_uid = 0
+# ec_gid = 0
+
+# Enable IP forwarding
+sudo sysctl -w net.ipv4.ip_forward=1
+
+# Start Ettercap GUI
+sudo ettercap -G
